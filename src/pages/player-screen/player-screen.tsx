@@ -1,7 +1,23 @@
-export function PlayerScreen(): JSX.Element {
+import {Film} from '../../types/Film';
+import {useParams} from 'react-router-dom';
+import {NotFoundScreen} from '../not-found-screen/not-found-screen';
+
+export type PlayerScreenProps = {
+  films: Film[];
+}
+
+
+export function PlayerScreen({films}: PlayerScreenProps): JSX.Element {
+  const {id} = useParams();
+  const film = films.find((f) => f.id === id);
+
+  if (!film) {
+    return <NotFoundScreen/>;
+  }
+
   return (
     <div className="player">
-      <video src="#" className="player__video" poster="img/player-poster.jpg"></video>
+      <video src={film.videoLink} className="player__video" poster="img/player-poster.jpg"></video>
 
       <button type="button" className="player__exit">Exit</button>
 
