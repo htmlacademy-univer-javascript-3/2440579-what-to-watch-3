@@ -5,6 +5,7 @@ import {FilmList} from '../../components/film-list/film-list';
 import {Link, useNavigate, useParams} from 'react-router-dom';
 import {AppRoute} from '../../const';
 import {NotFoundScreen} from '../not-found-screen/not-found-screen';
+import {Tabs} from '../../components/tabs/tabs';
 
 export type MovieScreenProps = {
   films: Film[];
@@ -85,37 +86,7 @@ export function MovieScreen({films} : MovieScreenProps) : JSX.Element {
               />
             </div>
 
-            <div className="film-card__desc">
-              <nav className="film-nav film-card__nav">
-                <ul className="film-nav__list">
-                  <li className="film-nav__item film-nav__item--active">
-                    <a href="#" className="film-nav__link">Overview</a>
-                  </li>
-                  <li className="film-nav__item">
-                    <a href="#" className="film-nav__link">Details</a>
-                  </li>
-                  <li className="film-nav__item">
-                    <a href="#" className="film-nav__link">Reviews</a>
-                  </li>
-                </ul>
-              </nav>
-
-              <div className="film-rating">
-                <div className="film-rating__score">{mainFilm.rating}</div>
-                <p className="film-rating__meta">
-                  <span className="film-rating__level">Very good</span>
-                  <span className="film-rating__count">{mainFilm.scoresCount}</span>
-                </p>
-              </div>
-
-              <div className="film-card__text">
-                <p>{mainFilm.description}</p>
-
-                <p className="film-card__director"><strong>{`Director: ${mainFilm.director}`}</strong></p>
-
-                <p className="film-card__starring"><strong>{`Starring: ${mainFilm.starring.join(', ')} and other`}</strong></p>
-              </div>
-            </div>
+            <Tabs film={mainFilm}/>
           </div>
         </div>
       </section>
