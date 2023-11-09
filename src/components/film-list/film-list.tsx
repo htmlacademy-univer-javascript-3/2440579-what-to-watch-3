@@ -7,7 +7,7 @@ type FilmListProps = {
 }
 
 export function FilmList({films}: FilmListProps): JSX.Element {
-  const [, setActiveFilm] = useState('');
+  const [activeFilmId, setActiveFilmId] = useState('');
 
   return (
     <div className="catalog__films-list">
@@ -15,8 +15,9 @@ export function FilmList({films}: FilmListProps): JSX.Element {
         <FilmCard
           key={film.id}
           film={film}
-          onMouseEnter={() => setActiveFilm(film.id)}
-          onMouseLeave={() => setActiveFilm('')}
+          isActive={activeFilmId === film.id}
+          onMouseEnter={() => setActiveFilmId(film.id)}
+          onMouseLeave={() => setActiveFilmId('')}
         />
       ))}
     </div>
