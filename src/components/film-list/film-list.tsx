@@ -5,11 +5,13 @@ import {ShowMore} from '../show-more/show-more';
 
 type FilmListProps = {
   films: Film[];
-  displayedFilmsSize: number;
+  displayedFilmsSize?: number;
 }
 
 export function FilmList({films, displayedFilmsSize}: FilmListProps): JSX.Element {
   const [activeFilmId, setActiveFilmId] = useState('');
+
+  displayedFilmsSize = displayedFilmsSize || films.length;
 
   return (
     <>

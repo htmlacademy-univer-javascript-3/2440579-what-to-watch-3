@@ -24,4 +24,4 @@ export const GENRES: string[] = [
   'Thriller'
 ];
 
-export const FILMS_BATCH_SIZE = 2;
+export const FILMS_BATCH_SIZE = 8;
