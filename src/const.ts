@@ -12,3 +12,14 @@ export enum AuthStatus {
   NoAuth = 'NO_AUTH',
   Unknown = 'UNKNOWN'
 }
+
+export const ALL_GENRES = 'All genres';
+
+export const GENRES: string[] = [
+  'Comedy',
+  'Drama',
+  'Fantasy',
+  'Biographical',
+  'Crime',
+  'Thriller'
+];

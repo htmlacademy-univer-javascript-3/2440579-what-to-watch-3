@@ -20,7 +20,7 @@ export function App({films}: AppProps) {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={AppRoute.Main} element={<MainScreen promoFilm={promoFilm} films={films}/>}/>
+        <Route path={AppRoute.Main} element={<MainScreen promoFilm={promoFilm}/>}/>
         <Route path={AppRoute.SignIn} element={<SignInScreen/>}/>
         <Route path={AppRoute.MyList} element={
           <PrivateRoute authStatus={AuthStatus.Auth}>
