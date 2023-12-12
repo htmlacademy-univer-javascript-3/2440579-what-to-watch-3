@@ -17,6 +17,7 @@ type MainScreenProps = {
 export function MainScreen({promoFilm}: MainScreenProps): JSX.Element {
   const films = useAppSelector((state) => state.films);
   const selectedGenre = useAppSelector((state) => state.genre);
+  const displayedFilmsSize = useAppSelector((state) => state.filmsSize);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -94,11 +95,8 @@ export function MainScreen({promoFilm}: MainScreenProps): JSX.Element {
 
           <GenreList genres={new Set(GENRES)}/>
 
-          <FilmList films={films.filter((f) => f !== promoFilm)}/>
+          <FilmList films={films.filter((f) => f !== promoFilm)} displayedFilmsSize={displayedFilmsSize}/>
 
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
-          </div>
         </section>
 
         <Footer />
