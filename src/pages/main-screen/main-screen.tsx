@@ -1,29 +1,32 @@
 import {Footer} from '../../components/footer/footer';
-import {Film} from '../../types/Film';
 import {Logo} from '../../components/logo/logo';
 import {FilmList} from '../../components/film-list/film-list';
 import {useNavigate} from 'react-router-dom';
-import {AppRoute, GENRES} from '../../const';
+import {AppRoute} from '../../const';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {GenreList} from '../../components/genre-list/genre-list';
 import {useEffect} from 'react';
 import {getFilms} from '../../store/action';
+import Spinner from '../../components/spinner/Spinner';
 
-type MainScreenProps = {
-  promoFilm: Film;
-
-}
-
-export function MainScreen({promoFilm}: MainScreenProps): JSX.Element {
+export function MainScreen(): JSX.Element {
   const films = useAppSelector((state) => state.films);
+  const filmsByGenre = useAppSelector((state) => state.filmsByGenre);
   const selectedGenre = useAppSelector((state) => state.genre);
   const displayedFilmsSize = useAppSelector((state) => state.filmsSize);
+  const promoFilm = useAppSelector((state) => state.promoFilm);
+  const filmDataLoadingStatus = useAppSelector((state) => state.filmDataLoadingStatus);
+
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getFilms());
-  }, [dispatch, selectedGenre]);
+  }, [dispatch, selectedGenre, films]);
+
+  if (filmDataLoadingStatus || promoFilm === undefined) {
+    return <Spinner/>;
+  }
 
   return (
     <>
@@ -93,9 +96,9 @@ export function MainScreen({promoFilm}: MainScreenProps): JSX.Element {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <GenreList genres={new Set(GENRES)}/>
+          <GenreList genres={new Set(films.map((f) => f.genre))}/>
 
-          <FilmList films={films.filter((f) => f !== promoFilm)} displayedFilmsSize={displayedFilmsSize}/>
+          <FilmList films={filmsByGenre.filter((f) => f.id !== promoFilm.id)} displayedFilmsSize={displayedFilmsSize}/>
 
         </section>
 

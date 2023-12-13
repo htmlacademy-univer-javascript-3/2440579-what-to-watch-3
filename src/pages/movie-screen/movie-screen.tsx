@@ -1,6 +1,6 @@
 import {Footer} from '../../components/footer/footer';
 import {Logo} from '../../components/logo/logo';
-import {Film} from '../../types/Film';
+import {DeatailFilm} from '../../types/Film';
 import {FilmList} from '../../components/film-list/film-list';
 import {Link, useNavigate, useParams} from 'react-router-dom';
 import {AppRoute} from '../../const';
@@ -8,13 +8,13 @@ import {NotFoundScreen} from '../not-found-screen/not-found-screen';
 import {Tabs} from '../../components/tabs/tabs';
 
 export type MovieScreenProps = {
-  films: Film[];
+  films: DeatailFilm[];
 }
 
 export function MovieScreen({films} : MovieScreenProps) : JSX.Element {
   const {id} = useParams();
   const navigate = useNavigate();
-  const mainFilm: Film | undefined = films.find((f) => f.id === id);
+  const mainFilm: DeatailFilm | undefined = films.find((f) => f.id === id);
 
   if (!mainFilm) {
     return <NotFoundScreen/>;

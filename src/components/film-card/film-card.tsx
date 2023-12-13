@@ -1,11 +1,11 @@
 import {Link} from 'react-router-dom';
-import {Film} from '../../types/Film';
+import {DeatailFilm} from '../../types/Film';
 import {MouseEventHandler, useEffect, useState} from 'react';
 import {PreviewPlayer} from '../preview-player/preview-player';
 import {AppRoute} from '../../const';
 
 export type FilmCardProps = {
-  film: Film;
+  film: DeatailFilm;
   isActive: boolean;
   onMouseEnter: MouseEventHandler;
   onMouseLeave: MouseEventHandler;

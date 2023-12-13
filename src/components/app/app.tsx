@@ -15,12 +15,10 @@ export type AppProps = {
 }
 
 export function App({films}: AppProps) {
-  const promoFilm = films.find((f) => f.id === 'aba664c3-bdf3-4fb3-b8f3-42e007864bbf') as Film;
-
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={AppRoute.Main} element={<MainScreen promoFilm={promoFilm}/>}/>
+        <Route path={AppRoute.Main} element={<MainScreen/>}/>
         <Route path={AppRoute.SignIn} element={<SignInScreen/>}/>
         <Route path={AppRoute.MyList} element={
           <PrivateRoute authStatus={AuthStatus.Auth}>

@@ -1,9 +1,9 @@
-import {Film} from '../../types/Film';
+import {DeatailFilm} from '../../types/Film';
 import {useParams} from 'react-router-dom';
 import {NotFoundScreen} from '../not-found-screen/not-found-screen';
 
 export type PlayerScreenProps = {
-  films: Film[];
+  films: DeatailFilm[];
 }
 
 
