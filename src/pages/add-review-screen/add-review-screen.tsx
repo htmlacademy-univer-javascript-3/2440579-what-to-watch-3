@@ -1,12 +1,12 @@
 import {Logo} from '../../components/logo/logo';
 import {AddReviewForm} from '../../components/add-review-form/add-review-form';
-import {Film} from '../../types/Film';
+import {DeatailFilm} from '../../types/Film';
 import {Link, useParams} from 'react-router-dom';
 import {AppRoute} from '../../const';
 import {NotFoundScreen} from '../not-found-screen/not-found-screen';
 
 type AddReviewScreenProps = {
-  films: Film[];
+  films: DeatailFilm[];
 }
 
 export function AddReviewScreen({films}: AddReviewScreenProps): JSX.Element {

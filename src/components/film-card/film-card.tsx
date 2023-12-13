@@ -32,7 +32,7 @@ export function FilmCard({film, isActive, onMouseEnter, onMouseLeave}: FilmCardP
       <div className="small-film-card__image">
         {
           isActivePlayer
-            ? <PreviewPlayer videoLink={film.videoLink} posterImage={film.posterImage} width={width} height={height} muted autoPlay/>
+            ? <PreviewPlayer videoLink={film.previewVideoLink} posterImage={film.previewImage} width={width} height={height} muted autoPlay/>
             : <img src={film.previewImage} alt={film.name} width={width} height={height}/>
         }
       </div>

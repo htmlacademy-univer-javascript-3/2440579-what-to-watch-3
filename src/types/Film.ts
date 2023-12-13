@@ -5,6 +5,25 @@ export type Film = {
   id: uuid;
   name: string;
   previewImage: string;
+  previewVideoLink: string;
+  genre: string;
+}
+
+export type PromoFilm = {
+  id: uuid;
+  name: string;
+  posterImage: string;
+  backgroundImage: string;
+  videoLink: string;
+  genre: string;
+  released: number;
+  isFavorite: boolean;
+}
+
+export type DeatailFilm = {
+  id: uuid;
+  name: string;
+  previewImage: string;
   genre: string;
   // previewVideoLink: string;
   posterImage: string;
