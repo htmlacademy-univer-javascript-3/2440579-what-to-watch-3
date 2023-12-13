@@ -1,10 +1,10 @@
 import {FilmCard} from '../film-card/film-card';
-import {DeatailFilm} from '../../types/Film';
+import {Film} from '../../types/Film';
 import {useState} from 'react';
 import {ShowMore} from '../show-more/show-more';
 
 type FilmListProps = {
-  films: DeatailFilm[];
+  films: Film[];
   displayedFilmsSize?: number;
 }
 

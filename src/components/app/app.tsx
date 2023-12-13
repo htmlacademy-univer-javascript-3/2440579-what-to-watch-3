@@ -1,5 +1,5 @@
 import {MainScreen} from '../../pages/main-screen/main-screen';
-import {Film} from '../../types/Film';
+import {DeatailFilm} from '../../types/Film';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import {AppRoute, AuthStatus} from '../../const';
 import {NotFoundScreen} from '../../pages/not-found-screen/not-found-screen';
@@ -11,7 +11,7 @@ import {MyListScreen} from '../../pages/my-list-screen/my-list-screen';
 import {AddReviewScreen} from '../../pages/add-review-screen/add-review-screen';
 
 export type AppProps = {
-  films: Film[];
+  films: DeatailFilm[];
 }
 
 export function App({films}: AppProps) {

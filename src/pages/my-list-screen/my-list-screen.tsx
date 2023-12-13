@@ -1,10 +1,10 @@
 import {Footer} from '../../components/footer/footer';
 import {Logo} from '../../components/logo/logo';
 import {FilmList} from '../../components/film-list/film-list';
-import {Film} from '../../types/Film';
+import {DeatailFilm} from '../../types/Film';
 
 export type MyListScreenProps = {
-  films: Film[];
+  films: DeatailFilm[];
 }
 
 export function MyListScreen({films}: MyListScreenProps): JSX.Element {

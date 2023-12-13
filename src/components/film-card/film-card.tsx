@@ -1,11 +1,11 @@
 import {Link} from 'react-router-dom';
-import {DeatailFilm} from '../../types/Film';
+import {Film} from '../../types/Film';
 import {MouseEventHandler, useEffect, useState} from 'react';
 import {PreviewPlayer} from '../preview-player/preview-player';
 import {AppRoute} from '../../const';
 
 export type FilmCardProps = {
-  film: DeatailFilm;
+  film: Film;
   isActive: boolean;
   onMouseEnter: MouseEventHandler;
   onMouseLeave: MouseEventHandler;
@@ -32,7 +32,7 @@ export function FilmCard({film, isActive, onMouseEnter, onMouseLeave}: FilmCardP
       <div className="small-film-card__image">
         {
           isActivePlayer
-            ? <PreviewPlayer videoLink={film.videoLink} posterImage={film.posterImage} width={width} height={height} muted autoPlay/>
+            ? <PreviewPlayer videoLink={film.previewVideoLink} posterImage={film.previewImage} width={width} height={height} muted autoPlay/>
             : <img src={film.previewImage} alt={film.name} width={width} height={height}/>
         }
       </div>
