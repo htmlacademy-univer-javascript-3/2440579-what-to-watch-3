@@ -1,20 +1,16 @@
 import {Footer} from '../../components/footer/footer';
 import {Logo} from '../../components/logo/logo';
-import {FilmList} from '../../components/film-list/film-list';
-import {Film} from '../../types/Film';
+// import {FilmList} from '../../components/film-list/film-list';
 
-export type MyListScreenProps = {
-  films: Film[];
-}
 
-export function MyListScreen({films}: MyListScreenProps): JSX.Element {
+export function MyListScreen(): JSX.Element {
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
 
         <Logo/>
 
-        <h1 className="page-title user-page__title">My list <span className="user-page__film-count">{films.length}</span></h1>
+        <h1 className="page-title user-page__title">My list <span className="user-page__film-count">10</span></h1>
         <ul className="user-block">
           <li className="user-block__item">
             <div className="user-block__avatar">
@@ -30,7 +26,7 @@ export function MyListScreen({films}: MyListScreenProps): JSX.Element {
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-        <FilmList films={films}/>
+        {/*<FilmList films={films}/>*/}
 
       </section>
 
