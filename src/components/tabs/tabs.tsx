@@ -1,8 +1,8 @@
 import {DeatailFilm} from '../../types/Film';
 import {useState} from 'react';
-import {Overview} from './overview';
-import {Details} from './details';
-import {Review} from './review';
+import {OverviewTab} from './overview-tab';
+import {DetailsTab} from './details-tab';
+import {ReviewTab} from './review-tab';
 
 export type TabsProps = {
   film: DeatailFilm;
@@ -12,9 +12,9 @@ export function Tabs({film}: TabsProps): JSX.Element {
   const [activeTab, setActiveTab] = useState<string>('Overview');
 
   const tabs = {
-    Overview: <Overview film={film}/>,
-    Details: <Details film={film}/>,
-    Review: <Review/>,
+    Overview: <OverviewTab film={film}/>,
+    Details: <DetailsTab film={film}/>,
+    Review: <ReviewTab/>,
   };
 
   return (

@@ -4,12 +4,12 @@ import {AppRoute} from '../../const';
 import {NotFoundScreen} from '../../pages/not-found-screen/not-found-screen';
 import {SignInScreen} from '../../pages/sign-in-screen/sign-in-screen';
 import {PrivateRoute} from '../private-route/private-route';
-// import {MovieScreen} from '../../pages/movie-screen/movie-screen';
-// import {PlayerScreen} from '../../pages/player-screen/player-screen';
+import {MovieScreen} from '../../pages/movie-screen/movie-screen';
+import {PlayerScreen} from '../../pages/player-screen/player-screen';
 import {MyListScreen} from '../../pages/my-list-screen/my-list-screen';
 import HistoryRouter from '../history-router/history-router';
 import browserHistory from '../../browser-history';
-// import {AddReviewScreen} from '../../pages/add-review-screen/add-review-screen';
+import {AddReviewScreen} from '../../pages/add-review-screen/add-review-screen';
 
 export function App() {
   return (
@@ -23,9 +23,9 @@ export function App() {
           </PrivateRoute>
         }
         />
-        {/*<Route path={AppRoute.Film} element={<MovieScreen films={films}/>}/>*/}
-        {/*<Route path={AppRoute.AddReview} element={<AddReviewScreen films={films}/>}/>*/}
-        {/*<Route path={AppRoute.Player} element={<PlayerScreen films={films}/>}/>*/}
+        <Route path={AppRoute.Film} element={<MovieScreen />}/>
+        <Route path={AppRoute.AddReview} element={<AddReviewScreen />}/>
+        <Route path={AppRoute.Player} element={<PlayerScreen />}/>
         <Route path='*' element={<NotFoundScreen/>}/>
       </Routes>
     </HistoryRouter>

@@ -1,5 +1,5 @@
 import { createAction } from '@reduxjs/toolkit';
-import {Film, PromoFilm} from '../types/Film';
+import {DeatailFilm, Film, PromoFilm} from '../types/Film';
 import {AppRoute, AuthStatus} from '../const';
 
 export const setGenre = createAction('set-genre', (genre: string) => ({
@@ -19,3 +19,5 @@ export const setPromoFilm = createAction<PromoFilm>('setPromoFilm');
 export const setAuthStatus = createAction<AuthStatus>('setAuthStatus');
 
 export const redirectToRoute = createAction<AppRoute>('redirectToRoute');
+
+export const setCurrentFilm = createAction<DeatailFilm>('setCurrentFilm');
