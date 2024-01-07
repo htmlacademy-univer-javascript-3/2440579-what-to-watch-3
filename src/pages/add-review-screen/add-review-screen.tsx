@@ -1,17 +1,23 @@
 import {Logo} from '../../components/logo/logo';
 import {AddReviewForm} from '../../components/add-review-form/add-review-form';
-import {DeatailFilm} from '../../types/Film';
 import {Link, useParams} from 'react-router-dom';
 import {AppRoute} from '../../const';
 import {NotFoundScreen} from '../not-found-screen/not-found-screen';
+import {UserBlock} from '../../components/user-block/user-block';
+import {useAppDispatch, useAppSelector} from '../../hooks';
+import {useEffect} from 'react';
+import {fetchFilm} from '../../store/api-actions';
 
-type AddReviewScreenProps = {
-  films: DeatailFilm[];
-}
-
-export function AddReviewScreen({films}: AddReviewScreenProps): JSX.Element {
+export function AddReviewScreen(): JSX.Element {
   const {id} = useParams();
-  const film = films.find((f) => f.id === id);
+  const dispatch = useAppDispatch();
+  const film = useAppSelector((state) => state.currentFilm);
+
+  useEffect(() => {
+    if (id) {
+      dispatch(fetchFilm(id));
+    }
+  }, [dispatch, id]);
 
   if (!film) {
     return <NotFoundScreen/>;
@@ -41,16 +47,8 @@ export function AddReviewScreen({films}: AddReviewScreenProps): JSX.Element {
             </ul>
           </nav>
 
-          <ul className="user-block">
-            <li className="user-block__item">
-              <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
-              </div>
-            </li>
-            <li className="user-block__item">
-              <a className="user-block__link">Sign out</a>
-            </li>
-          </ul>
+          <UserBlock/>
+
         </header>
 
         <div className="film-card__poster film-card__poster--small">

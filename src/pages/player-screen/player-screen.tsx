@@ -1,15 +1,20 @@
-import {DeatailFilm} from '../../types/Film';
 import {useParams} from 'react-router-dom';
 import {NotFoundScreen} from '../not-found-screen/not-found-screen';
+import {useAppDispatch, useAppSelector} from '../../hooks';
+import {useEffect} from 'react';
+import {fetchFilm} from '../../store/api-actions';
 
-export type PlayerScreenProps = {
-  films: DeatailFilm[];
-}
 
-
-export function PlayerScreen({films}: PlayerScreenProps): JSX.Element {
+export function PlayerScreen(): JSX.Element {
   const {id} = useParams();
-  const film = films.find((f) => f.id === id);
+  const dispatch = useAppDispatch();
+  const film = useAppSelector((state) => state.currentFilm);
+
+  useEffect(() => {
+    if (id) {
+      dispatch(fetchFilm(id));
+    }
+  }, [dispatch, id]);
 
   if (!film) {
     return <NotFoundScreen/>;

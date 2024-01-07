@@ -25,6 +25,7 @@ export type DeatailFilm = {
   name: string;
   previewImage: string;
   genre: string;
+  runTime: number;
   // previewVideoLink: string;
   posterImage: string;
   backgroundImage: string;
@@ -37,5 +38,5 @@ export type DeatailFilm = {
   starring: string[];
   // runTime: number;
   released: number;
-  // isFavorite: boolean;
+  isFavorite: boolean;
 }

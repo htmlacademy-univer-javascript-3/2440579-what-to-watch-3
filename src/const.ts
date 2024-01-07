@@ -11,7 +11,8 @@ export enum APIRoute {
   Films = '/films',
   Promo = '/promo',
   Login = '/login',
-  Logout = '/logout'
+  Logout = '/logout',
+  Comments = '/comments'
 }
 
 export enum AuthStatus {
@@ -21,14 +22,5 @@ export enum AuthStatus {
 }
 
 export const ALL_GENRES = 'All genres';
-
-export const GENRES: string[] = [
-  'Comedy',
-  'Drama',
-  'Fantasy',
-  'Biographical',
-  'Crime',
-  'Thriller'
-];
 
 export const FILMS_BATCH_SIZE = 8;

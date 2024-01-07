@@ -1,7 +1,7 @@
 import {createReducer} from '@reduxjs/toolkit';
 import {
   getFilms,
-  setAuthStatus,
+  setAuthStatus, setCurrentFilm,
   setFilmDataLoadingStatus,
   setFilms,
   setGenre,
@@ -9,7 +9,7 @@ import {
   upFilmSize
 } from './action';
 import {ALL_GENRES, AuthStatus, FILMS_BATCH_SIZE} from '../const';
-import {Film, PromoFilm} from '../types/Film';
+import {DeatailFilm, Film, PromoFilm} from '../types/Film';
 
 type InitialState = {
   genre: string;
@@ -18,6 +18,7 @@ type InitialState = {
   filmsSize: number;
   filmDataLoadingStatus: boolean;
   promoFilm: PromoFilm;
+  currentFilm: DeatailFilm;
   authStatus: AuthStatus;
 }
 
@@ -28,6 +29,7 @@ const initialState : InitialState = {
   filmsSize: FILMS_BATCH_SIZE,
   filmDataLoadingStatus: false,
   promoFilm: undefined as unknown as PromoFilm,
+  currentFilm: undefined as unknown as DeatailFilm,
   authStatus: AuthStatus.Unknown,
 };
 
@@ -51,6 +53,9 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setPromoFilm, (state, action) => {
       state.promoFilm = action.payload;
+    })
+    .addCase(setCurrentFilm, (state, action) => {
+      state.currentFilm = action.payload;
     })
     .addCase(setAuthStatus, (state, action) => {
       state.authStatus = action.payload;

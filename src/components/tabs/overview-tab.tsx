@@ -4,7 +4,7 @@ export type OverviewProps = {
   film: DeatailFilm;
 }
 
-export function Overview({film}: OverviewProps): JSX.Element {
+export function OverviewTab({film}: OverviewProps): JSX.Element {
   return (
     <>
       <div className="film-rating">
