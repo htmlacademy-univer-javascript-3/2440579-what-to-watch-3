@@ -3,25 +3,30 @@ import {useNavigate, useParams} from 'react-router-dom';
 import {useAppDispatch} from '../../hooks';
 import {postComment} from '../../store/api-actions';
 import {AppRoute} from '../../const';
+import {validateRating, validateTextLength} from '../../utils/validators';
 
 export function AddReviewForm(): JSX.Element {
   const {id} = useParams();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const commentRef = useRef<HTMLTextAreaElement | null>(null);
-  const [rating, setRating] = useState(-1);
+  const [rating, setRating] = useState(0);
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
-    if (commentRef.current !== null && rating !== -1) {
-      dispatch(postComment({
-        filmId: id as string,
-        comment: commentRef.current.value,
-        rating: rating
-      }))
-        .unwrap()
-        .then(() => navigate(`${AppRoute.Film.replace(':id', id as string)}`));
+    if (commentRef.current !== null) {
+      const textIsValid = validateTextLength(commentRef.current.value, 50, 400);
+      const ratingIsValid = validateRating(rating);
+      if (textIsValid && ratingIsValid) {
+        dispatch(postComment({
+          filmId: id as string,
+          comment: commentRef.current.value,
+          rating: rating
+        }))
+          .unwrap()
+          .then(() => navigate(`${AppRoute.Film.replace(':id', id as string)}`));
+      }
     }
   };
 

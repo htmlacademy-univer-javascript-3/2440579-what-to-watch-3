@@ -10,14 +10,16 @@ import {useEffect, useState} from 'react';
 import {fetchFilm, fetchSimilarFilms} from '../../store/api-actions';
 import {FilmList} from '../../components/film-list/film-list';
 import {Film} from '../../types/Film';
+import {getCurrentFilm} from '../../store/film-data/selectors';
+import {getAuthStatus} from '../../store/user-process/selectors';
 
 
 export function MovieScreen() : JSX.Element {
   const {id} = useParams();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const film = useAppSelector((state) => state.currentFilm);
-  const authStatus = useAppSelector((state) => state.authStatus);
+  const film = useAppSelector(getCurrentFilm);
+  const authStatus = useAppSelector(getAuthStatus);
   const [similarFilms, setSimilarFilms] = useState<Film[]>([]);
 
   useEffect(() => {

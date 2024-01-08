@@ -7,17 +7,18 @@ import {UserBlock} from '../../components/user-block/user-block';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {useEffect} from 'react';
 import {fetchFilm} from '../../store/api-actions';
+import {getCurrentFilm} from '../../store/film-data/selectors';
 
 export function AddReviewScreen(): JSX.Element {
   const {id} = useParams();
   const dispatch = useAppDispatch();
-  const film = useAppSelector((state) => state.currentFilm);
+  const film = useAppSelector(getCurrentFilm);
 
   useEffect(() => {
-    if (id) {
+    if (id && !film) {
       dispatch(fetchFilm(id));
     }
-  }, [dispatch, id]);
+  }, [dispatch, id, film]);
 
   if (!film) {
     return <NotFoundScreen/>;
@@ -27,7 +28,7 @@ export function AddReviewScreen(): JSX.Element {
     <section className="film-card film-card--full">
       <div className="film-card__header">
         <div className="film-card__bg">
-          <img src={film.previewImage} alt={film.name}/>
+          <img src={film.backgroundImage} alt={film.name}/>
         </div>
 
         <h1 className="visually-hidden">WTW</h1>

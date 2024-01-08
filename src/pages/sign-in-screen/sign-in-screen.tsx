@@ -3,6 +3,8 @@ import {Logo} from '../../components/logo/logo';
 import {FormEvent, useRef} from 'react';
 import {useAppDispatch} from '../../hooks';
 import {loginAction} from '../../store/api-actions';
+import 'react-toastify/dist/ReactToastify.css';
+import {validateEmail, validatePassword} from '../../utils/validators';
 
 export function SignInScreen(): JSX.Element {
   const emailRef = useRef<HTMLInputElement | null>(null);
@@ -14,10 +16,14 @@ export function SignInScreen(): JSX.Element {
     evt.preventDefault();
 
     if (emailRef.current !== null && passwordRef.current !== null) {
-      dispatch(loginAction({
-        email: emailRef.current.value,
-        password: passwordRef.current.value
-      }));
+      const emailIsValid = validateEmail(emailRef.current.value);
+      const passwordIsValid = validatePassword(passwordRef.current.value);
+      if (emailIsValid && passwordIsValid) {
+        dispatch(loginAction({
+          email: emailRef.current.value,
+          password: passwordRef.current.value
+        }));
+      }
     }
   };
 

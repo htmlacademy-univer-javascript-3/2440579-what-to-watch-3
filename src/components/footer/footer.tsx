@@ -1,5 +1,8 @@
-export function Footer(): JSX.Element {
-  return (
+import {memo} from 'react';
+
+// eslint-disable-next-line react/display-name
+export const Footer = memo(
+  (): JSX.Element => (
     <footer className="page-footer">
       <div className="logo">
         <a className="logo__link logo__link--light">
@@ -13,5 +16,5 @@ export function Footer(): JSX.Element {
         <p>© 2019 What to watch Ltd.</p>
       </div>
     </footer>
-  );
-}
+  )
+);

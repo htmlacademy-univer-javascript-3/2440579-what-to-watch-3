@@ -3,7 +3,7 @@ import {useAppDispatch} from '../../hooks';
 import {useEffect, useState} from 'react';
 import {Review} from '../../types/review';
 import {fetchComments} from '../../store/api-actions';
-import getRussianFormatDate from '../../utils/date-util';
+import getEnUsFormatDate from '../../utils/date-util';
 
 function splitArray<T>(array: Array<T>) : [Array<T>, Array<T>] {
   const midpoint = Math.ceil(array.length / 2);
@@ -22,8 +22,7 @@ export function ReviewTab(): JSX.Element {
     if (id) {
       dispatch(fetchComments(id))
         .unwrap()
-        .then((data) => setReviews(data))
-        .catch((err) => <div>Something went wrong: {err}</div>);
+        .then((data) => setReviews(data));
     }
   }, [dispatch, id]);
 
@@ -37,7 +36,7 @@ export function ReviewTab(): JSX.Element {
             <p className="review__text">{review.comment}</p>
             <footer className="review__details">
               <cite className="review__author">{review.user}</cite>
-              <time className="review__date" dateTime={review.date}>{getRussianFormatDate(review.date)}</time>
+              <time className="review__date" dateTime={review.date}>{getEnUsFormatDate(review.date)}</time>
             </footer>
           </blockquote>
           <div className="review__rating">{review.rating}</div>
