@@ -3,12 +3,13 @@ import {NotFoundScreen} from '../not-found-screen/not-found-screen';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {useEffect} from 'react';
 import {fetchFilm} from '../../store/api-actions';
+import {getCurrentFilm} from '../../store/film-data/selectors';
 
 
 export function PlayerScreen(): JSX.Element {
   const {id} = useParams();
   const dispatch = useAppDispatch();
-  const film = useAppSelector((state) => state.currentFilm);
+  const film = useAppSelector(getCurrentFilm);
 
   useEffect(() => {
     if (id) {

@@ -21,6 +21,11 @@ export enum AuthStatus {
   Unknown = 'UNKNOWN'
 }
 
+export enum NameSpace {
+  Data = 'DATA',
+  User = 'USER',
+}
+
 export const ALL_GENRES = 'All genres';
 
 export const FILMS_BATCH_SIZE = 8;

@@ -7,7 +7,9 @@ export type Film = {
   previewImage: string;
   previewVideoLink: string;
   genre: string;
-}
+};
+
+export type Films = Film[];
 
 export type PromoFilm = {
   id: uuid;
@@ -39,4 +41,4 @@ export type DeatailFilm = {
   // runTime: number;
   released: number;
   isFavorite: boolean;
-}
+};

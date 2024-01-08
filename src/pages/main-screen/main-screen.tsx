@@ -9,14 +9,21 @@ import {useEffect} from 'react';
 import {getFilms} from '../../store/action';
 import Spinner from '../../components/spinner/Spinner';
 import {UserBlock} from '../../components/user-block/user-block';
+import {
+  getAllFilms,
+  getCurrentGenre, getFilmDataLoadingStatus,
+  getFilmsByGenre,
+  getFilmsSize,
+  getPromoFilm
+} from '../../store/film-data/selectors';
 
 export function MainScreen(): JSX.Element {
-  const films = useAppSelector((state) => state.films);
-  const filmsByGenre = useAppSelector((state) => state.filmsByGenre);
-  const selectedGenre = useAppSelector((state) => state.genre);
-  const displayedFilmsSize = useAppSelector((state) => state.filmsSize);
-  const promoFilm = useAppSelector((state) => state.promoFilm);
-  const filmDataLoadingStatus = useAppSelector((state) => state.filmDataLoadingStatus);
+  const films = useAppSelector(getAllFilms);
+  const filmsByGenre = useAppSelector(getFilmsByGenre);
+  const selectedGenre = useAppSelector(getCurrentGenre);
+  const displayedFilmsSize = useAppSelector(getFilmsSize);
+  const promoFilm = useAppSelector(getPromoFilm);
+  const filmDataLoadingStatus = useAppSelector(getFilmDataLoadingStatus);
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -25,7 +32,7 @@ export function MainScreen(): JSX.Element {
     dispatch(getFilms());
   }, [dispatch, selectedGenre, films]);
 
-  if (filmDataLoadingStatus || promoFilm === undefined) {
+  if (filmDataLoadingStatus || promoFilm === null) {
     return <Spinner/>;
   }
 

@@ -1,5 +1,15 @@
 import {DeatailFilm} from '../../types/Film';
 
+function getRunTimeString(runTime: number) : string {
+  const hours = Math.floor(runTime / 60);
+  const minutes = runTime % 60;
+
+  const hoursString = hours === 0 ? '' : `${hours}h`;
+  const minutesString = minutes === 0 ? '' : `${minutes}m`;
+
+  return `${hoursString} ${minutesString}`;
+}
+
 export type DetailsProps = {
   film: DeatailFilm;
 }
@@ -21,7 +31,7 @@ export function DetailsTab({film}: DetailsProps): JSX.Element {
       <div className="film-card__text-col">
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Run Time</strong>
-          <span className="film-card__details-value">{`${Math.floor(film.runTime / 60)}h ${film.runTime % 60}m`}</span>
+          <span className="film-card__details-value">{getRunTimeString(film.runTime)}</span>
         </p>
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Genre</strong>

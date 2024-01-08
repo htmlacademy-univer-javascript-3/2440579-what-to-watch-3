@@ -10,10 +10,12 @@ import {MyListScreen} from '../../pages/my-list-screen/my-list-screen';
 import HistoryRouter from '../history-router/history-router';
 import browserHistory from '../../browser-history';
 import {AddReviewScreen} from '../../pages/add-review-screen/add-review-screen';
+import {ToastContainer} from 'react-toastify';
 
 export function App() {
   return (
     <HistoryRouter history={browserHistory}>
+      <ToastContainer/>
       <Routes>
         <Route path={AppRoute.Main} element={<MainScreen/>}/>
         <Route path={AppRoute.SignIn} element={<SignInScreen/>}/>

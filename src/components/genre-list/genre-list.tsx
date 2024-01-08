@@ -2,13 +2,14 @@ import {ALL_GENRES} from '../../const';
 import cn from 'classnames';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {setGenre} from '../../store/action';
+import {getCurrentGenre} from '../../store/film-data/selectors';
 
 type GenreListProps = {
   genres: Set<string>;
 }
 
 export function GenreList({genres}: GenreListProps) : JSX.Element {
-  const selectedGenre = useAppSelector((state) => state.genre);
+  const selectedGenre = useAppSelector(getCurrentGenre);
   const dispatch = useAppDispatch();
 
   return (
