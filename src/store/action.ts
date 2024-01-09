@@ -1,23 +1,13 @@
 import { createAction } from '@reduxjs/toolkit';
-import {DeatailFilm, Film, PromoFilm} from '../types/Film';
-import {AppRoute, AuthStatus} from '../const';
+import {AppRoute} from '../const';
 
-export const setGenre = createAction('set-genre', (genre: string) => ({
+export const setGenre = createAction('data/setGenre', (genre: string) => ({
   payload: genre,
 }));
 
-export const getFilms = createAction('get-films');
+export const getFilms = createAction('data/getFilms');
 
-export const upFilmSize = createAction('up-film-size');
-
-export const setFilmDataLoadingStatus = createAction<boolean>('setFilmDataLoadingStatus');
-
-export const setFilms = createAction<Film[]>('setFilms');
-
-export const setPromoFilm = createAction<PromoFilm>('setPromoFilm');
-
-export const setAuthStatus = createAction<AuthStatus>('setAuthStatus');
+export const upFilmSize = createAction('data/upFilmSize');
+export const clearFavoriteFilms = createAction('data/clearFavoriteFilms');
 
 export const redirectToRoute = createAction<AppRoute>('redirectToRoute');
-
-export const setCurrentFilm = createAction<DeatailFilm>('setCurrentFilm');

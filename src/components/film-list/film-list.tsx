@@ -1,5 +1,5 @@
 import {FilmCard} from '../film-card/film-card';
-import {Film} from '../../types/Film';
+import {Film} from '../../types/film';
 import {useState} from 'react';
 import {ShowMore} from '../show-more/show-more';
 

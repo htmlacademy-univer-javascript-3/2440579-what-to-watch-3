@@ -1,4 +1,4 @@
-import {DeatailFilm} from '../../types/Film';
+import {DetailFilm} from '../../types/film';
 
 function getRunTimeString(runTime: number) : string {
   const hours = Math.floor(runTime / 60);
@@ -11,7 +11,7 @@ function getRunTimeString(runTime: number) : string {
 }
 
 export type DetailsProps = {
-  film: DeatailFilm;
+  film: DetailFilm;
 }
 
 export function DetailsTab({film}: DetailsProps): JSX.Element {

@@ -1,4 +1,4 @@
-import {DeatailFilm} from '../../types/Film';
+import {DetailFilm} from '../../types/film';
 
 function getRatingText(rating: number): string {
   if (rating === 10) {
@@ -15,7 +15,7 @@ function getRatingText(rating: number): string {
 }
 
 export type OverviewProps = {
-  film: DeatailFilm;
+  film: DetailFilm;
 }
 
 export function OverviewTab({film}: OverviewProps): JSX.Element {

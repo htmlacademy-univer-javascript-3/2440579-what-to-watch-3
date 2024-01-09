@@ -1,7 +1,7 @@
 import {useParams} from 'react-router-dom';
 import {useAppDispatch} from '../../hooks';
 import {useEffect, useState} from 'react';
-import {Review} from '../../types/review';
+import {Comment} from '../../types/comment';
 import {fetchComments} from '../../store/api-actions';
 import getEnUsFormatDate from '../../utils/date-util';
 
@@ -16,7 +16,7 @@ function splitArray<T>(array: Array<T>) : [Array<T>, Array<T>] {
 export function ReviewTab(): JSX.Element {
   const {id} = useParams();
   const dispatch = useAppDispatch();
-  const [reviews, setReviews] = useState<Review[]>([]);
+  const [reviews, setReviews] = useState<Comment[]>([]);
 
   useEffect(() => {
     if (id) {
@@ -26,9 +26,9 @@ export function ReviewTab(): JSX.Element {
     }
   }, [dispatch, id]);
 
-  const [firstColReviews, secondColReviews] = splitArray<Review>(reviews);
+  const [firstColReviews, secondColReviews] = splitArray<Comment>(reviews);
 
-  const renderColumn = (colReviews: Review[]) => (
+  const renderColumn = (colReviews: Comment[]) => (
     <div className="film-card__reviews-col">
       {colReviews.map((review) => (
         <div key={review.id} className="review">

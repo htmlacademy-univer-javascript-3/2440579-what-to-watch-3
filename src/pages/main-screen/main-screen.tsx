@@ -5,7 +5,7 @@ import {useNavigate} from 'react-router-dom';
 import {AppRoute} from '../../const';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {GenreList} from '../../components/genre-list/genre-list';
-import {useEffect} from 'react';
+import {useEffect, useMemo} from 'react';
 import {getFilms} from '../../store/action';
 import Spinner from '../../components/spinner/Spinner';
 import {UserBlock} from '../../components/user-block/user-block';
@@ -16,6 +16,9 @@ import {
   getFilmsSize,
   getPromoFilm
 } from '../../store/film-data/selectors';
+import MyListButton from '../../components/my-list-button/my-list-button';
+import {getAuthStatus} from '../../store/user-process/selectors';
+import {fetchPromoFilm} from '../../store/api-actions';
 
 export function MainScreen(): JSX.Element {
   const films = useAppSelector(getAllFilms);
@@ -24,13 +27,22 @@ export function MainScreen(): JSX.Element {
   const displayedFilmsSize = useAppSelector(getFilmsSize);
   const promoFilm = useAppSelector(getPromoFilm);
   const filmDataLoadingStatus = useAppSelector(getFilmDataLoadingStatus);
+  const authStatus = useAppSelector(getAuthStatus);
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
+  const filmGenres = useMemo(() => new Set(
+    ['All genres', ...films.map((film) => film.genre)]
+  ), [films]);
+
   useEffect(() => {
     dispatch(getFilms());
   }, [dispatch, selectedGenre, films]);
+
+  useEffect(() => {
+    dispatch(fetchPromoFilm());
+  }, [dispatch, authStatus]);
 
   if (filmDataLoadingStatus || promoFilm === null) {
     return <Spinner/>;
@@ -77,15 +89,7 @@ export function MainScreen(): JSX.Element {
                   </svg>
                   <span>Play</span>
                 </button>
-                <button className="btn btn--list film-card__button" type="button"
-                  onClick={() => navigate(AppRoute.MyList.replace(':id', promoFilm.id))}
-                >
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                  <span className="film-card__count">9</span>
-                </button>
+                <MyListButton filmId={promoFilm.id} isFavorite={promoFilm.isFavorite}/>
               </div>
             </div>
           </div>
@@ -96,9 +100,9 @@ export function MainScreen(): JSX.Element {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <GenreList genres={new Set(films.map((f) => f.genre))}/>
+          <GenreList genres={filmGenres}/>
 
-          <FilmList films={filmsByGenre.filter((f) => f.id !== promoFilm.id)} displayedFilmsSize={displayedFilmsSize}/>
+          <FilmList films={filmsByGenre} displayedFilmsSize={displayedFilmsSize}/>
 
         </section>
 

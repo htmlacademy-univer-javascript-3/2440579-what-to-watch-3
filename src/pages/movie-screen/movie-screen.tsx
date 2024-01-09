@@ -9,9 +9,10 @@ import {useAppDispatch, useAppSelector} from '../../hooks';
 import {useEffect, useState} from 'react';
 import {fetchFilm, fetchSimilarFilms} from '../../store/api-actions';
 import {FilmList} from '../../components/film-list/film-list';
-import {Film} from '../../types/Film';
+import {Film} from '../../types/film';
 import {getCurrentFilm} from '../../store/film-data/selectors';
 import {getAuthStatus} from '../../store/user-process/selectors';
+import MyListButton from '../../components/my-list-button/my-list-button';
 
 
 export function MovieScreen() : JSX.Element {
@@ -29,7 +30,7 @@ export function MovieScreen() : JSX.Element {
         .unwrap()
         .then((data) => setSimilarFilms(data));
     }
-  }, [dispatch, id]);
+  }, [dispatch, id, authStatus]);
 
   if (!film) {
     return <NotFoundScreen/>;
@@ -70,15 +71,7 @@ export function MovieScreen() : JSX.Element {
                   </svg>
                   <span>Play</span>
                 </button>
-                <button className="btn btn--list film-card__button" type="button"
-                  onClick={() => navigate(AppRoute.MyList.replace(':id', film.id))}
-                >
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                  <span className="film-card__count">9</span>
-                </button>
+                <MyListButton filmId={film.id} isFavorite={film.isFavorite}/>
                 {
                   authStatus === AuthStatus.Auth &&
                   <Link to={AppRoute.AddReview.replace(':id', film.id)} className="btn film-card__button">Add review</Link>

@@ -1,6 +1,6 @@
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {AppRoute, AuthStatus} from '../../const';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import {logoutAction} from '../../store/api-actions';
 import {getAuthStatus} from '../../store/user-process/selectors';
 import {memo} from 'react';
@@ -8,6 +8,7 @@ import {memo} from 'react';
 // eslint-disable-next-line react/display-name
 export const UserBlock = memo(
   (): JSX.Element => {
+    const navigate = useNavigate();
     const authStatus = useAppSelector(getAuthStatus);
 
     const dispatch = useAppDispatch();
@@ -17,7 +18,9 @@ export const UserBlock = memo(
         <ul className="user-block">
           <li className="user-block__item">
             <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
+              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"
+                onClick={() => navigate(AppRoute.MyList)}
+              />
             </div>
           </li>
           <li className="user-block__item">
