@@ -1,5 +1,4 @@
 export type uuid = string;
-// type hexColor = string;
 
 export type Film = {
   id: uuid;
@@ -22,23 +21,21 @@ export type PromoFilm = {
   isFavorite: boolean;
 }
 
-export type DeatailFilm = {
+export type DetailFilm = {
   id: uuid;
   name: string;
   previewImage: string;
   genre: string;
   runTime: number;
-  // previewVideoLink: string;
   posterImage: string;
   backgroundImage: string;
-  // backgroundColor: hexColor;
+  backgroundColor: string;
   videoLink: string;
   description: string;
   rating: number;
   scoresCount: number;
   director: string;
   starring: string[];
-  // runTime: number;
   released: number;
   isFavorite: boolean;
 };

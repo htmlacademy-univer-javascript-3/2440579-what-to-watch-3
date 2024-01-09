@@ -1,8 +1,8 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {ALL_GENRES, FILMS_BATCH_SIZE, NameSpace} from '../../const';
 import {FilmData} from '../../types/state';
-import {getFilms, setGenre, upFilmSize} from '../action';
-import {fetchFilm, fetchFilms, fetchPromoFilm} from '../api-actions';
+import {clearFavoriteFilms, getFilms, setGenre, upFilmSize} from '../action';
+import {fetchFavoritesFilms, fetchFilm, fetchFilms, fetchPromoFilm} from '../api-actions';
 
 const initialState: FilmData = {
   currentGenre: ALL_GENRES,
@@ -12,6 +12,7 @@ const initialState: FilmData = {
   filmsByGenre: [],
   filmsSize: FILMS_BATCH_SIZE,
   filmDataLoadingStatus: false,
+  favoriteFilms: []
 };
 
 export const filmData = createSlice({
@@ -29,6 +30,9 @@ export const filmData = createSlice({
       })
       .addCase(upFilmSize, (state) => {
         state.filmsSize += FILMS_BATCH_SIZE;
+      })
+      .addCase(clearFavoriteFilms, (state) => {
+        state.favoriteFilms = [];
       })
       .addCase(fetchFilms.pending, (state) => {
         state.filmDataLoadingStatus = true;
@@ -50,6 +54,9 @@ export const filmData = createSlice({
       .addCase(fetchPromoFilm.fulfilled, (state, action) => {
         state.promoFilm = action.payload;
         state.filmDataLoadingStatus = false;
+      })
+      .addCase(fetchFavoritesFilms.fulfilled, (state, action) => {
+        state.favoriteFilms = action.payload;
       });
   }
 });

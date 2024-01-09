@@ -1,5 +1,5 @@
 import {Link} from 'react-router-dom';
-import {Film} from '../../types/Film';
+import {Film} from '../../types/film';
 import {memo, MouseEventHandler, useEffect, useState} from 'react';
 import {PreviewPlayer} from '../preview-player/preview-player';
 import {AppRoute} from '../../const';

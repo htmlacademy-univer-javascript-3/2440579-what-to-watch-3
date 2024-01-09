@@ -4,11 +4,7 @@ export type CreateCommentRequest = {
   rating: number;
 }
 
-export type GetCommentsRequest = {
-  filmId: string;
-}
-
-export type Review = {
+export type Comment = {
   id: string;
   date: string;
   user: string;

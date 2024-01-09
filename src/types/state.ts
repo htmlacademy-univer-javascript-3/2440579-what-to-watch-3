@@ -1,6 +1,6 @@
 import {store} from '../store';
 import {AuthStatus} from '../const';
-import {DeatailFilm, Films, PromoFilm} from './Film';
+import {DetailFilm, Films, PromoFilm} from './film';
 
 export type UserProcess = {
   authStatus: AuthStatus;
@@ -8,12 +8,13 @@ export type UserProcess = {
 
 export type FilmData = {
   promoFilm: PromoFilm | null;
-  currentFilm: DeatailFilm | null;
+  currentFilm: DetailFilm | null;
   currentGenre: string;
   films: Films;
   filmsByGenre: Films;
   filmsSize: number;
   filmDataLoadingStatus: boolean;
+  favoriteFilms: Films;
 }
 
 export type State = ReturnType<typeof store.getState>;
