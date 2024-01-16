@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {ALL_GENRES, FILMS_BATCH_SIZE, NameSpace} from '../../const';
 import {FilmData} from '../../types/state';
-import {clearFavoriteFilms, getFilms, setGenre, upFilmSize} from '../action';
+import {clearFavoriteFilms, getFilms, resetFilmSize, setGenre, upFilmSize} from '../action';
 import {fetchFavoritesFilms, fetchFilm, fetchFilms, fetchPromoFilm} from '../api-actions';
 
 const initialState: FilmData = {
@@ -30,6 +30,9 @@ export const filmData = createSlice({
       })
       .addCase(upFilmSize, (state) => {
         state.filmsSize += FILMS_BATCH_SIZE;
+      })
+      .addCase(resetFilmSize, (state) => {
+        state.filmsSize = FILMS_BATCH_SIZE;
       })
       .addCase(clearFavoriteFilms, (state) => {
         state.favoriteFilms = [];

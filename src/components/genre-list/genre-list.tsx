@@ -4,7 +4,7 @@ import {setGenre} from '../../store/action';
 import {getCurrentGenre} from '../../store/film-data/selectors';
 
 type GenreListProps = {
-  genres: Set<string>;
+  genres: string[];
 }
 
 export function GenreList({genres}: GenreListProps) : JSX.Element {
@@ -14,7 +14,7 @@ export function GenreList({genres}: GenreListProps) : JSX.Element {
   return (
     <ul className="catalog__genres-list">
       {
-        [...genres].map((g) => (
+        genres.map((g) => (
           <li key={g} className={cn('catalog__genres-item', {'catalog__genres-item--active': selectedGenre === g})}>
             <a onClick={() => dispatch(setGenre(g))} className="catalog__genres-link">{g}</a>
           </li>

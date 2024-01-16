@@ -8,6 +8,7 @@ export const setGenre = createAction('data/setGenre', (genre: string) => ({
 export const getFilms = createAction('data/getFilms');
 
 export const upFilmSize = createAction('data/upFilmSize');
+export const resetFilmSize = createAction('data/resetFilmSize');
 export const clearFavoriteFilms = createAction('data/clearFavoriteFilms');
 
 export const redirectToRoute = createAction<AppRoute>('redirectToRoute');

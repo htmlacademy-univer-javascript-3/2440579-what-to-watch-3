@@ -1,16 +1,25 @@
 import {Footer} from '../../components/footer/footer';
 import {Logo} from '../../components/logo/logo';
 import {FormEvent, useRef} from 'react';
-import {useAppDispatch} from '../../hooks';
+import {useAppDispatch, useAppSelector} from '../../hooks';
 import {loginAction} from '../../store/api-actions';
 import 'react-toastify/dist/ReactToastify.css';
 import {validateEmail, validatePassword} from '../../utils/validators';
+import {getAuthStatus} from '../../store/user-process/selectors';
+import {AppRoute, AuthStatus} from '../../const';
+import {Navigate} from 'react-router-dom';
 
 export function SignInScreen(): JSX.Element {
   const emailRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
 
   const dispatch = useAppDispatch();
+
+  const authStatus = useAppSelector(getAuthStatus);
+
+  if (authStatus === AuthStatus.Auth) {
+    return <Navigate to={AppRoute.Main}/>;
+  }
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();

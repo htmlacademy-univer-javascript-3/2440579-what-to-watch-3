@@ -22,8 +22,10 @@ export default function MyListButton({ filmId, isFavorite }: MyListButtonProps) 
   const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(fetchFavoritesFilms());
-  }, [dispatch]);
+    if (authStatus === AuthStatus.Auth) {
+      dispatch(fetchFavoritesFilms());
+    }
+  }, [dispatch, authStatus]);
 
   const handleClick = () => {
     if (authStatus !== AuthStatus.Auth) {

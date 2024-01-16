@@ -2,11 +2,11 @@ import {Footer} from '../../components/footer/footer';
 import {Logo} from '../../components/logo/logo';
 import {FilmList} from '../../components/film-list/film-list';
 import {useNavigate} from 'react-router-dom';
-import {AppRoute} from '../../const';
+import {AppRoute, MAX_GENRE_LIST_SIZE} from '../../const';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {GenreList} from '../../components/genre-list/genre-list';
 import {useEffect, useMemo} from 'react';
-import {getFilms} from '../../store/action';
+import {getFilms, resetFilmSize} from '../../store/action';
 import Spinner from '../../components/spinner/Spinner';
 import {UserBlock} from '../../components/user-block/user-block';
 import {
@@ -32,9 +32,10 @@ export function MainScreen(): JSX.Element {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const filmGenres = useMemo(() => new Set(
-    ['All genres', ...films.map((film) => film.genre)]
-  ), [films]);
+  const filmGenres = useMemo(
+    () => ['All genres', ...new Set(films.map((film) => film.genre))]
+      .slice(0, MAX_GENRE_LIST_SIZE + 1),
+    [films]);
 
   useEffect(() => {
     dispatch(getFilms());
@@ -43,6 +44,10 @@ export function MainScreen(): JSX.Element {
   useEffect(() => {
     dispatch(fetchPromoFilm());
   }, [dispatch, authStatus]);
+
+  useEffect(() => {
+    dispatch(resetFilmSize());
+  }, [dispatch]);
 
   if (filmDataLoadingStatus || promoFilm === null) {
     return <Spinner/>;
@@ -102,7 +107,7 @@ export function MainScreen(): JSX.Element {
 
           <GenreList genres={filmGenres}/>
 
-          <FilmList films={filmsByGenre} displayedFilmsSize={displayedFilmsSize}/>
+          <FilmList films={filmsByGenre} displayedFilmsSize={displayedFilmsSize} showMore/>
 
         </section>
 

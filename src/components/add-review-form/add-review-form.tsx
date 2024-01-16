@@ -11,22 +11,28 @@ export function AddReviewForm(): JSX.Element {
   const navigate = useNavigate();
   const commentRef = useRef<HTMLTextAreaElement | null>(null);
   const [rating, setRating] = useState(0);
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
+    setIsSubmitting(true);
+
     if (commentRef.current !== null) {
       const textIsValid = validateTextLength(commentRef.current.value, 50, 400);
       const ratingIsValid = validateRating(rating);
-      if (textIsValid && ratingIsValid) {
-        dispatch(postComment({
-          filmId: id as string,
-          comment: commentRef.current.value,
-          rating: rating
-        }))
-          .unwrap()
-          .then(() => navigate(`${AppRoute.Film.replace(':id', id as string)}`));
+      if (!textIsValid || !ratingIsValid) {
+        setIsSubmitting(false);
+        return;
       }
+      dispatch(postComment({
+        filmId: id as string,
+        comment: commentRef.current.value,
+        rating: rating
+      }))
+        .unwrap()
+        .then(() => navigate(`${AppRoute.Film.replace(':id', id as string)}`))
+        .finally(() => setIsSubmitting(false));
     }
   };
 
@@ -44,6 +50,7 @@ export function AddReviewForm(): JSX.Element {
                   name="rating"
                   value={index + 1}
                   onChange={() => setRating(index + 1)}
+                  disabled={isSubmitting}
                 />
                 <label className="rating__label" htmlFor={`star-${index + 1}`}>
                   Rating {index + 1}
@@ -60,10 +67,11 @@ export function AddReviewForm(): JSX.Element {
             id="review-text"
             placeholder="Review text"
             ref={commentRef}
+            disabled={isSubmitting}
           >
           </textarea>
           <div className="add-review__submit">
-            <button className="add-review__btn" type="submit">Post</button>
+            <button className="add-review__btn" type="submit" disabled={isSubmitting}>Post</button>
           </div>
 
         </div>
