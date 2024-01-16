@@ -6,9 +6,10 @@ import {ShowMore} from '../show-more/show-more';
 type FilmListProps = {
   films: Film[];
   displayedFilmsSize?: number;
+  showMore?: boolean;
 }
 
-export function FilmList({films, displayedFilmsSize}: FilmListProps): JSX.Element {
+export function FilmList({films, displayedFilmsSize, showMore}: FilmListProps): JSX.Element {
   const [activeFilmId, setActiveFilmId] = useState('');
 
   displayedFilmsSize = displayedFilmsSize || films.length;
@@ -26,7 +27,7 @@ export function FilmList({films, displayedFilmsSize}: FilmListProps): JSX.Elemen
           />
         ))}
       </div>
-      { films.length > displayedFilmsSize && <ShowMore/>}
+      { showMore && films.length > displayedFilmsSize && <ShowMore/>}
     </>
   );
 }

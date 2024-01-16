@@ -1,7 +1,7 @@
 import {Footer} from '../../components/footer/footer';
 import {Logo} from '../../components/logo/logo';
 import {Link, useNavigate, useParams} from 'react-router-dom';
-import {AppRoute, AuthStatus} from '../../const';
+import {AppRoute, AuthStatus, MAX_MORE_LIKES_THIS_SIZE} from '../../const';
 import {NotFoundScreen} from '../not-found-screen/not-found-screen';
 import {Tabs} from '../../components/tabs/tabs';
 import {UserBlock} from '../../components/user-block/user-block';
@@ -98,7 +98,7 @@ export function MovieScreen() : JSX.Element {
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
 
-          <FilmList films={similarFilms} />
+          <FilmList films={similarFilms} displayedFilmsSize={MAX_MORE_LIKES_THIS_SIZE}/>
 
         </section>
 

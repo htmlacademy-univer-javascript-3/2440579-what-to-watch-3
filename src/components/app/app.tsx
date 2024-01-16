@@ -25,8 +25,13 @@ export function App() {
           </PrivateRoute>
         }
         />
+        <Route path={AppRoute.AddReview} element={
+          <PrivateRoute>
+            <AddReviewScreen />
+          </PrivateRoute>
+        }
+        />
         <Route path={AppRoute.Film} element={<MovieScreen />}/>
-        <Route path={AppRoute.AddReview} element={<AddReviewScreen />}/>
         <Route path={AppRoute.Player} element={<PlayerScreen />}/>
         <Route path='*' element={<NotFoundScreen/>}/>
       </Routes>

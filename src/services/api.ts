@@ -1,6 +1,7 @@
 import axios, {AxiosError, AxiosInstance, AxiosResponse} from 'axios';
 import {StatusCodes} from 'http-status-codes';
 import {getToken} from './token';
+import {toast} from 'react-toastify';
 
 type DetailMessageType = {
   errorType: string;
@@ -41,8 +42,9 @@ export const createAPI = (): AxiosInstance => {
     (error: AxiosError<DetailMessageType>) => {
       if (error.response && shouldDisplayError(error.response)) {
         const detailMessage = (error.response.data);
-        // eslint-disable-next-line no-console
-        console.log(detailMessage.message);
+        toast.error(detailMessage.message);
+      } else {
+        toast.error('Server is not available');
       }
 
       throw error;

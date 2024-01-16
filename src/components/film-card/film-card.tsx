@@ -30,18 +30,18 @@ export const FilmCard = memo(
     }, [isActive]);
 
     return (
-      <article className="small-film-card catalog__films-card" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
-        <div className="small-film-card__image">
-          {
-            isActivePlayer
-              ? <PreviewPlayer videoLink={film.previewVideoLink} posterImage={film.previewImage} width={width} height={height} muted autoPlay/>
-              : <img src={film.previewImage} alt={film.name} width={width} height={height}/>
-          }
-        </div>
-        <h3 className="small-film-card__title">
-          <Link to={AppRoute.Film.replace(':id', film.id)} className="small-film-card__link">{film.name}</Link>
-        </h3>
-      </article>
+      <Link to={AppRoute.Film.replace(':id', film.id)} className="small-film-card catalog__films-card small-film-card__link">
+        <article onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+          <div className="small-film-card__image">
+            {
+              isActivePlayer
+                ? <PreviewPlayer videoLink={film.previewVideoLink} posterImage={film.previewImage} width={width} height={height} muted autoPlay/>
+                : <img src={film.previewImage} alt={film.name} width={width} height={height}/>
+            }
+          </div>
+          <h3 className="small-film-card__title">{film.name}</h3>
+        </article>
+      </Link>
     );
   }
 );

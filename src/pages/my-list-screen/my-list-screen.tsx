@@ -21,6 +21,7 @@ export function MyListScreen(): JSX.Element {
       <header className="page-header user-page__head">
 
         <Logo/>
+        <h1 className="page-title user-page__title">My list <span className="user-page__film-count">{favoriteFilms.length}</span></h1>
         <UserBlock/>
 
       </header>

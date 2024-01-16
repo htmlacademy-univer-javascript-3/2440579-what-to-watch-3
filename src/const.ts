@@ -30,3 +30,5 @@ export enum NameSpace {
 export const ALL_GENRES = 'All genres';
 
 export const FILMS_BATCH_SIZE = 8;
+export const MAX_MORE_LIKES_THIS_SIZE = 4;
+export const MAX_GENRE_LIST_SIZE = 9;
